@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>where are minions?</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      /* position: relative; */
+      background-image: url('./minions素材/minions_BG.gif');
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: contain;
+      overflow: hidden;
+    }
+
+
+
+    #container {
+      height: 100vh;
+      padding-top: 2%;
+      position: relative;
+    }
+
+    #first {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    #first h1 {
+      font-size: 25px;
+      margin-left: 1%;
+      margin-right: 1%;
+      padding-top: 2%;
+    }
+
+    #start {
+      width: 150px;
+      height: 150px;
+      margin-right: 2%;
+      border-radius: 50%;
+      border: none;
+      background-color: #fff;
+      letter-spacing: 2.5px;
+      font-size: 25px;
+      font-weight: bold;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      outline: none;
+      position: absolute;
+      top: 5%;
+      left: 10%;
+    }
+
+    #start:hover {
+      background-color: #da3dfa;
+      color: #fff;
+      box-shadow: 0px 15px 20px rgba(46, 229, 157 0.4);
+      transform: translateY(-5px);
+      transition: 0.5s;
+    }
+
+    #second {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 1%;
+    }
+
+    #game {
+      cursor: url('./minions素材/hammer.png') 50 50, auto;
+      border: 15px groove lightcoral;
+      position: relative;
+      background-color: #ffa;
+    }
+
+    .hole {
+      width: 150px;
+      height: 180px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .banana {
+      width: 150px;
+      height: 180px;
+      position: fixed;
+      top: 16%;
+    }
+
+    .banana2 {
+      width: 150px;
+      height: 180px;
+      position: fixed;
+      top: 35%;
+    }
+
+    .banana3 {
+      width: 150px;
+      height: 180px;
+      position: fixed;
+      top: 55%;
+    }
+
+    .banana4 {
+      width: 150px;
+      height: 180px;
+      position: fixed;
+      top: 74%;
+    }
+
+    .minions {
+      width: 150px;
+      height: 180px;
+      background: url('./minions素材/minions1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 0 100px;
+      position: relative;
+      animation-name: minions1;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes minions1 {
+      0% {
+        bottom: 0px;
+      }
+
+      /* 50% {
+        bottom: 10px;
+      } */
+
+      100% {
+        bottom: 50px;
+      }
+    }
+
+    .minions_heart {
+      background: url('./minions素材/minionshearteyes.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 0 20px;
+    }
+
+    .purpleminions {
+      width: 150px;
+      height: 180px;
+      background: url('./minions素材/purpleminions1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 0 80px;
+      position: relative;
+      animation-name: purpleminions1;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes purpleminions1 {
+      0% {
+        bottom: 0px;
+      }
+
+      100% {
+        bottom: 40px;
+      }
+    }
+
+
+
+    .purpleminions_x {
+      background: url('./minions素材/xpurpleminions.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #third {
+      position: absolute;
+      top: 10%;
+      right: 15%;
+      width: 250px;
+      height: 150px;
+      padding-top: 1%;
+      border-radius: 15px;
+      background-color: blanchedalmond;
+      margin: auto;
+      text-align: center;
+      transform: rotate(358deg);
+    }
+
+    .right {
+      position: absolute;
+      top: 11%;
+      right: 5%;
+      z-index: -1;
+    }
+
+    #countdown {
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="first">
+      <input type="button" value="START" id="start">
+      <h1>倒數 <span id="countdown">0</span>秒</h1>
+      <h1>目前分數: <span id="score">0</span>分</h1>
+    </div>
+    <div id="second">
+      <table id="game" border="0">
+        <tr>
+          <td class="hole" id="hole6"><img class="banana" src="./minions素材/banana.png"></td>
+          <td class="hole" id="hole7"><img class="banana" src="./minions素材/banana.png"></td>
+          <td class="hole" id="hole8"><img class="banana" src="./minions素材/banana.png"></td>
+          <td class="hole" id="hole9"><img class="banana" src="./minions素材/banana.png"></td>
+        </tr>
+        <tr>
+          <td class="hole" id="holet"><img class="banana2" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holey"><img class="banana2" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holeu"><img class="banana2" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holei"><img class="banana2" src="./minions素材/banana.png"></td>
+        </tr>
+        <tr>
+          <td class="hole" id="holeg"><img class="banana3" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holeh"><img class="banana3" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holej"><img class="banana3" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holek"><img class="banana3" src="./minions素材/banana.png"></td>
+
+        </tr>
+        <tr>
+          <td class="hole" id="holev"><img class="banana4" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holeb"><img class="banana4" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holen"><img class="banana4" src="./minions素材/banana.png"></td>
+          <td class="hole" id="holem"><img class="banana4" src="./minions素材/banana.png"></td>
+        </tr>
+
+      </table>
+    </div>
+    <div id="third">
+      <h1>High Score</h1>
+      <br>
+      <p>玩家: <span id="highname">who?</span></p>
+      <br>
+      <p>分數: <span id="highscore">0</span>分</p>
+    </div>
+    <img class="right" src="./minions素材/3minions.png" alt="">
+  </div>
+
+
+
+
+  <script>
+    const holes = document.getElementsByClassName('hole')
+    const start = document.getElementById('start')
+
+    const scoreText = document.getElementById('score')
+    const highnameText = document.getElementById('highname')
+    const highscoreText = document.getElementById('highscore')
+    const countdownText = document.getElementById('countdown')
+
+    const high = { score: 0, name: 'who?' }
+    let score = 0
+    let timer = 0
+
+    let countdown = 0
+
+    const audio1 = new Audio()
+    const audio = new Audio()
+
+    const storage = JSON.parse(localStorage.getItem('xiaoxiaobing'))
+    if (storage) {
+      high.name = storage.name
+      high.score = storage.score
+      highnameText.innerText = high.name
+      highscoreText.innerText = high.score
+    }
+
+    start.onclick = () => {
+      start.disabled = true
+      score = 0
+      scoreText.innerText = score
+
+      audio.src = './minions素材/minions (mp3).mp3'
+      audio.play()
+
+      countdown = 30
+      countdownText.innerText = `${countdown}`
+      countdownText.style.color = 'red'
+      let time = setInterval(() => {
+        if (countdown === 0) {
+          clearInterval(countdown)
+          clearInterval(timer)
+        } else {
+          countdown--
+          countdownText.innerText = `${countdown}`
+
+        }
+      }, 1000)
+
+      timer = setInterval(game, 2 * 1000)
+      game()
+      setTimeout(end, 30 * 1000)
+    }
+
+    const game = () => {
+      for (const hole of holes) {
+        hole.classList.remove('minions')
+        hole.classList.remove('purpleminions')
+        hole.classList.remove('minions_heart')
+        hole.classList.remove('purpleminions_x')
+      }
+
+      for (let i = 0; i < 4; i++) {
+        holes[Math.round(Math.random() * (holes.length - 1))].classList.add('minions')
+      }
+      for (let j = 0; j < 2; j++) {
+        holes[Math.round(Math.random() * (holes.length - 1))].classList.add('purpleminions')
+      }
+    }
+
+    const end = () => {
+      clearInterval(timer)
+
+      for (const hole of holes) {
+        hole.classList.remove('minions')
+        hole.classList.remove('purpleminions')
+        hole.classList.remove('minions_heart')
+        hole.classList.remove('purpleminions_x')
+      }
+
+      start.disabled = false
+
+      alert(`遊戲結束，獲得 ${score} 分`)
+
+      if (score > high.score) {
+        audio.src = './minions素材/minions_banana.mp3'
+        audio.play()
+
+        const input = prompt(`最高分，請輸入名字`)
+
+        high.score = score
+        high.name = input || 'who?'
+
+        highnameText.innerText = high.name
+        highscoreText.innerText = high.score
+
+        localStorage.setItem('xiaoxiaobing', JSON.stringify(high))
+      }
+    }
+
+    for (const hole of holes) {
+      hole.onclick = () => {
+        if (hole.classList.contains('minions')) {
+          hole.classList.replace('minions', 'minions_heart')
+          score++
+          scoreText.innerText = score
+        }
+        if (hole.classList.contains('purpleminions')) {
+          hole.classList.replace('purpleminions', 'purpleminions_x')
+          score--
+          scoreText.innerText = score
+        }
+      }
+    }
+
+    // 數字鍵
+    document.onkeydown = event => {
+      // 按了什麼鍵
+      const key = event.key
+      // 如果是數字鍵
+      if (event) {
+        // 找到對應的格子
+        const target = document.getElementById(`hole${key}`)
+        // 如果有找到
+        if (target && target.classList.contains('minions')) {
+          // 變為藍色
+          target.classList.replace('minions', 'minions_heart')
+          // 加分
+          score++
+          scoreText.innerText = score
+        }
+        if (target && target.classList.contains('purpleminions')) {
+          target.classList.replace('purpleminions', 'purpleminions_x')
+          score--
+          scoreText.innerText = score
+        }
+      }
+    }
+
+    // document.onkeydown = event =>{
+    //   const key2 = event.key
+    //   if(event) {
+    //     const target2 = document.getElementById(`hole${key2}`)
+    //     if (target2 && target2.classList.contains('purpleminions'))
+    //     target2.classList.replace('purpleminions', 'purpleminions_x')
+    //     score--
+    //     scoreText.innerText = score
+    //   }
+    // }
+
+  </script>
+</body>
+
+</html>
